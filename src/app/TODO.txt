@@ -1,3 +1,4 @@
 Remove all any
 Use ngOnDestroy to kill api calls
 Use cacheInterceptor
+Add legend/info text to explain total cases = active,new,critical,recovered

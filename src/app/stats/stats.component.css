@@ -1,9 +1,8 @@
-mat-card.covid-linechart-card {
+.covid-stats-div {
+  margin-bottom: 30px;
+}
+mat-card.covid-barchart-card {
     padding-left: 24px;
     padding-right: 24px;
-  }
-  .covid-linechart-title {
-    font-weight: bold;
-    margin-bottom: 16px;
   }
   

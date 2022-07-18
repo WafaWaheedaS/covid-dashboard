@@ -1,18 +1,22 @@
-<div fxLayout="column">
+<div fxLayout="column" class="covid-stats-div">
   <div fxLayout="row" fxLayoutAlign="center center">
-    <h2>Spread of COVID-19 <span *ngIf="selectedCountry">in {{selectedCountry}}</span></h2>
+    <h2>Current Spread of COVID-19 in Most Affected Countries</h2>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center">
-    <covid-country-select></covid-country-select>
     <div id="covid-stats">
-      <mat-card class="covid-linechart-card" fxLayout="column" fxFlex="grow">
+      <mat-card class="covid-barchart-card" fxLayout="column" fxFlex="grow">
         <mat-card-content fxLayout="column" fxLayoutAlign="center" fxFlex="grow">
-          <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
-            [legend]="lineChartLegend">
+          <canvas baseChart
+            width="500"
+            height="300"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'bar'">
           </canvas>
         </mat-card-content>
       </mat-card>
     </div>
   </div>
 </div>
-{{countryStats | json}}
