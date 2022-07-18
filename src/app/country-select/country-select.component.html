@@ -1,10 +1,15 @@
 <div class="covid-country-select">
-<ng-multiselect-dropdown
-  [placeholder]="'Select country...'"
-  [settings]="dropdownSettings"
-  [data]="countriesList"
-  [(ngModel)]="selectedItems"
-  (onSelect)="onItemSelect($event)"
->
-</ng-multiselect-dropdown>
+  <p>
+    <mat-form-field>
+      <mat-select [formControl]="countryCtrl" placeholder="Country" #countrySelect>
+        <mat-option>
+          <ngx-mat-select-search [formControl]="countryFilterCtrl" placeholderLabel="Search" noEntriesFoundLabel="'no matching country found'"></ngx-mat-select-search>
+        </mat-option>
+  
+        <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+          {{country}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
 </div>

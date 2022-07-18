@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
 import { HttpOpt } from './http-opt.model';
-import { covidApiUrl } from '../app.constants';
+import { covidApiUrl, defaultSelectedCountry } from '../app.constants';
 import * as countryCodeLookup from 'country-code-lookup';
+import { Country } from './country.model';
 
 @Injectable()
 export class CountryService {
   constructor(private http: HttpClient) {}
+
+  
+  private selectedCountry = new BehaviorSubject<Country>(defaultSelectedCountry);
+
   private countryApiUrl = covidApiUrl+'/countries';
 
   public getAll({
@@ -30,6 +35,16 @@ export class CountryService {
         return countries;
       }),
     );
+  }
+
+  
+  public setSelectedCountry(country: Country): void {
+    console.log("setting selected country..", country)
+    this.selectedCountry.next(country);
+  }
+
+  public getSelectedCountry(): Observable<Country> {
+    return this.selectedCountry.asObservable();
   }
 
 }
