@@ -1,0 +1,10 @@
+<div class="covid-country-select">
+<ng-multiselect-dropdown
+  [placeholder]="'Select country...'"
+  [settings]="dropdownSettings"
+  [data]="countriesList"
+  [(ngModel)]="selectedItems"
+  (onSelect)="onItemSelect($event)"
+>
+</ng-multiselect-dropdown>
+</div>
