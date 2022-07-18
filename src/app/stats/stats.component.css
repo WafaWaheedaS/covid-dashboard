@@ -1,0 +1,9 @@
+mat-card.covid-linechart-card {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .covid-linechart-title {
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  

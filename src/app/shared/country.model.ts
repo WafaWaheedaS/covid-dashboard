@@ -18,3 +18,8 @@ export interface CountryStats extends Country {
         new: number;
     }
 }
+
+export interface HistoricalCountryStats {
+    date: string;
+    stats: CountryStats;
+}

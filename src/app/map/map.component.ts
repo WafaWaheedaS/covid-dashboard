@@ -4,7 +4,8 @@ import * as am5map from '@amcharts/amcharts5/map';
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow';
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { StatsService } from '../shared/stats.service';
-import { Country, CountryStats } from '../shared/country.model';
+import { CountryStats } from '../shared/country.model';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -18,11 +19,16 @@ export class MapComponent implements OnInit {
 
   map!: am5map.MapChart;
   countriesStats: CountryStats[] = [];
-  
+  _onDestroy = new Subject<void>();
+
   ngOnInit(): void {
     this.getStats();
   }
 
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
+  }
   
   private initialize() {
     var root = am5.Root.new("covid-world-map");
@@ -60,7 +66,7 @@ export class MapComponent implements OnInit {
     polygonSeries.set("heatRules", [{
       target: polygonSeries.mapPolygons.template,
       dataField: "value",
-      min: am5.color(0xff33a0),
+      min: am5.color(0xff99cf),
       max: am5.color(0x990052),
       key: "fill"
     }]);
@@ -68,7 +74,7 @@ export class MapComponent implements OnInit {
     let heatLegend = map.children.push(am5.HeatLegend.new(root, {
       orientation: "vertical",
       position: 'relative',
-      startColor: am5.color(0xff33a0),
+      startColor: am5.color(0xff99cf),
       endColor: am5.color(0x990052),
       startText: "Lowest",
       endText: "Highest",
@@ -105,7 +111,8 @@ export class MapComponent implements OnInit {
   }
 
   getStats(): void {
-    this.statsService.getAll().subscribe((countriesStatsRes: CountryStats[]) => {
+    this.statsService.getAll()
+    .pipe(takeUntil(this._onDestroy)).subscribe((countriesStatsRes: CountryStats[]) => {
       this.countriesStats = countriesStatsRes;
     }, (error) => console.log("Failed to get stats.", error), () => this.initialize() )
   }
