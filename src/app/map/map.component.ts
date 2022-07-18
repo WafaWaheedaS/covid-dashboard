@@ -3,6 +3,8 @@ import * as am5 from '@amcharts/amcharts5';
 import * as am5map from '@amcharts/amcharts5/map';
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow';
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import { StatsService } from '../shared/stats.service';
+import { Country, CountryStats } from '../shared/country.model';
 
 
 @Component({
@@ -12,14 +14,13 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private statsService: StatsService) { }
 
   map!: am5map.MapChart;
-
+  countriesStats: CountryStats[] = [];
+  
   ngOnInit(): void {
-    if (!this.map) {
-      this.initialize();
-    }
+    this.getStats();
   }
 
   
@@ -59,19 +60,31 @@ export class MapComponent implements OnInit {
     polygonSeries.set("heatRules", [{
       target: polygonSeries.mapPolygons.template,
       dataField: "value",
-      min: am5.color(0xff621f),
-      max: am5.color(0x661f00),
+      min: am5.color(0xff33a0),
+      max: am5.color(0x990052),
       key: "fill"
     }]);
 
     let heatLegend = map.children.push(am5.HeatLegend.new(root, {
       orientation: "vertical",
-      startColor: am5.color(0xff621f),
-      endColor: am5.color(0x661f00),
+      position: 'relative',
+      startColor: am5.color(0xff33a0),
+      endColor: am5.color(0x990052),
       startText: "Lowest",
       endText: "Highest",
-      stepCount: 5
+      stepCount: 3
     }));
+
+    
+    polygonSeries.mapPolygons.template.events.on("pointerover", function(ev) {
+      console.log(ev)
+      // heatLegend.showValue(ev.target.dataItem.get("value"));
+    });
+
+    polygonSeries.events.on("datavalidated", function () {
+      heatLegend.set("startValue", polygonSeries.getPrivate("valueLow"));
+      heatLegend.set("endValue", polygonSeries.getPrivate("valueHigh"));
+    });
     
     heatLegend.startLabel.setAll({
       fontSize: 12,
@@ -82,21 +95,19 @@ export class MapComponent implements OnInit {
       fontSize: 12,
       fill: heatLegend.get("endColor")
     });
-        
-    polygonSeries.data.setAll([
-      { name: "Afghanistan", value: 4447100 },
-      { name: "India", value: 626932 },
-      { name: "Qatar", value: 5130632 },
-      { name: "France", value: 2673400 },
-      { name: "Yemen", value: 33871648 },
-      { name: "Taiwan", value: 4301261 },
-      { name: "Tunisia", value: 3405565 },
-      { name: "Finland", value: 783600 },
-      { name: "Pakistan", value: 15982378 },
-      { name: "Ghana", value: 8186453 },
-    ]);
     
+    let mapData = this.countriesStats.map((countryStat: CountryStats) => {
+      return ({ name: countryStat.name, id: countryStat.id, value: countryStat?.cases?.total });
+    })
+    polygonSeries.data.setAll(mapData)
+
     this.map = map;
+  }
+
+  getStats(): void {
+    this.statsService.getAll().subscribe((countriesStatsRes: CountryStats[]) => {
+      this.countriesStats = countriesStatsRes;
+    }, (error) => console.log("Failed to get stats.", error), () => this.initialize() )
   }
 
 }

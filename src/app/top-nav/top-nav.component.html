@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <a [routerLink]="['/map']" class="covid-logo-text">{{title | uppercase}}</a>
+    <div fxFlex fxLayoutAlign="end end"> 
+        <a
+        mat-button
+        color="white"
+        class="covid-nav-item"
+        [routerLink]="['/map']"
+        routerLinkActive="active-menu-item"
+        >Map</a>
+
+        <a
+        mat-button
+        color="white"
+        class="covid-nav-item"
+        [routerLink]="['/stats']"
+        routerLinkActive="active-menu-item"
+        >Stats</a>
+
+        <a
+        mat-button
+        color="white"
+        class="covid-nav-item"
+        [routerLink]="['/history']"
+        routerLinkActive="active-menu-item"
+        >History</a>
+     </div>
+ </mat-toolbar>

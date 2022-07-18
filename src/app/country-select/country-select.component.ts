@@ -25,7 +25,7 @@ export class CountrySelectComponent implements OnInit {
       singleSelection: false,
       enableCheckAll: false,
       itemsShowLimit: 3,
-      limitSelection: 3,
+      limitSelection: 1,
       allowSearchFilter: true
     };
   }
@@ -33,7 +33,6 @@ export class CountrySelectComponent implements OnInit {
   onItemSelect(item: any) {
     let country: Country = { 'name': item, 'id': countryCodeLookup.byCountry(item)?.fips }
     this.selectedItems.push(country)
-    console.log(this.selectedItems, item, country)
   }
 
   getCountries(): void {
