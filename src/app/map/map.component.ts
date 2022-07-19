@@ -114,7 +114,6 @@ export class MapComponent implements OnInit {
 
   populateMapData(polygonSeries: am5map.MapPolygonSeries) {
     this.getStats()
-    console.log("populating data for...",this.selectedCountry)
     let mapData = this.countriesStats.map((countryStat: CountryStats) => {
       return ({ name: countryStat.name, id: countryStat.id, value: countryStat?.cases?.total });
     })
@@ -122,7 +121,6 @@ export class MapComponent implements OnInit {
   }
 
   getStats(): void {
-    console.log("getting stats..", this.selectedCountry)
     this.statsService.getAll({'country': this.selectedCountry})
     .pipe(takeUntil(this._onDestroy)).subscribe((countriesStatsRes: CountryStats[]) => {
       this.countriesStats = countriesStatsRes;

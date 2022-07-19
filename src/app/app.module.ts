@@ -27,6 +27,9 @@ import { HistoryComponent } from './history/history.component';
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { NgChartsModule } from 'ng2-charts';
 import { HistoryService } from './shared/history.service';
+import { TimerService } from './shared/timer.service';
+import { CacheService } from './shared/cache.service';
+import { CacheInterceptor } from './shared/cache.interceptor';
 
 
 @NgModule({
@@ -61,7 +64,10 @@ import { HistoryService } from './shared/history.service';
     CountryService,
     StatsService,     
     HistoryService,
+    CacheService,
+    TimerService,
     { provide: HTTP_INTERCEPTORS, useClass: KeyInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

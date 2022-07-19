@@ -3,6 +3,7 @@ import { Country } from "./shared/model"
 export const rapidApiHost: string = "covid-193.p.rapidapi.com"
 export const covidApiUrl: string = "https://covid-193.p.rapidapi.com"
 export const rapidApiKey: string = "0bac43938amshfb3ba519ee7445bp1ea547jsnea98343d7d2f"
+export const covidRapidApiDataUpdateFrequency = 15;
 export const defaultSelectedCountry: Country = {id: 'IN', name: 'India'}
 export const dateLabel: string[] = [
     "15 Jan'22",

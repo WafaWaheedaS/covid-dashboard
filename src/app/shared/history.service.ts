@@ -30,7 +30,6 @@ export class HistoryService {
             map(res => {
                 let countryHistoryData: HistoricalCountryStats[] = [];
                 res.response.map((stat: any) => countryHistoryData.push({ ...stat, name: stat.country, id: countryCodeLookup.byCountry(stat.country)?.fips }))
-                localStorage.setItem(`${res.response.country}HistoryData`, JSON.stringify(countryHistoryData));
                 return countryHistoryData;
             }),
         );

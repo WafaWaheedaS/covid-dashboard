@@ -26,7 +26,6 @@ export class StatsService {
       map(res => {
         let countriesStats: CountryStats[] = [];
         res.response.map(  (stat: any) => countriesStats.push({...stat, "name": stat.country, "id": countryCodeLookup.byCountry(stat.country)?.fips}))
-        localStorage.setItem('countriesStats', JSON.stringify(countriesStats));
         return countriesStats;
       }),
     );

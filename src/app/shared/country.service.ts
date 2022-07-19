@@ -30,7 +30,6 @@ export class CountryService {
       map(res => {
         let countries: Country[] = [];
         res.response.map(  (country: string) => countries.push({"name": country, "id": countryCodeLookup.byCountry(country)?.fips }))
-        localStorage.setItem('countries', JSON.stringify(countries));
         return countries;
       }),
     );
