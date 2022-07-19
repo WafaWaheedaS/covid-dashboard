@@ -1,10 +1,12 @@
 <div fxLayout="column">
     <covid-stats></covid-stats>
     <div fxLayout="row" fxLayoutAlign="center center">
-        <h2>Countries Affected by COVID-19 based on total # of cases</h2>
+        <h2>Countries Affected by COVID-19 based on total number of cases</h2>
     </div>
-    <div fxLayout="row" fxLayoutAlign="center center">
-        <covid-country-select></covid-country-select>
-        <div id="covid-world-map"></div>
+    <div fxLayout="column" fxLayoutAlign="end end">
+        <div fxLayout="row" fxLayoutAlign="end end"><mat-slide-toggle [(ngModel)]="showSelectCountries">Search or Filter By Countries</mat-slide-toggle></div>
+        <div fxLayout="row" fxLayoutAlign="end end">
+        <covid-country-select *ngIf="showSelectCountries"></covid-country-select></div>
     </div>
+    <div id="covid-world-map" fxLayout="row" fxLayoutAlign="center center"></div>
 </div>

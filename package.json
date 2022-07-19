@@ -23,7 +23,6 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    "apexcharts": "^3.35.3",
     "chart.js": "^3.6.0",
     "country-code-lookup": "^0.0.20",
     "ng2-charts": "^4.0.0",

@@ -81,10 +81,10 @@ export class StatsComponent implements OnInit {
       datasets: [
         { data: totalCases, 
           label: 'Total Cases',
-          backgroundColor: '#990052' },
+          backgroundColor: '#3f51b5' },
         { data: activeCases, 
           label: 'Active Cases',
-          backgroundColor: '#ff99cf' },
+          backgroundColor: '#c91818' },
         { data: recoveredCases, 
           label: 'Recovered Cases',
           backgroundColor: '#3fb57e' }

@@ -1,13 +1,13 @@
 <div fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="center center">
-        <h2>Historical Monthly Stats <span *ngIf="selectedCountry">for {{selectedCountry}}</span></h2>
+        <h2>Monthly COVID-19 Stats <span *ngIf="selectedCountry">for {{selectedCountry}}</span></h2>
     </div>
     <div fxLayout="row" fxLayoutAlign="center center">
         <covid-country-select></covid-country-select>
         <div id="covid-stats-column">
             <mat-card class="covid-linechart-card" fxLayout="column" fxFlex="grow">
               <mat-card-content fxLayout="column" fxLayoutAlign="center" fxFlex="grow">
-                <canvas baseChart width="400" height="400" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
+                <canvas baseChart width="500" height="400" [type]="'line'" [data]="lineChartData" [options]="lineChartOptions"
                   [legend]="lineChartLegend">
                 </canvas>
               </mat-card-content>

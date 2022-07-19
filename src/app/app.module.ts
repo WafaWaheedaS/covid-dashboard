@@ -5,6 +5,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
@@ -46,10 +47,10 @@ import { HistoryService } from './shared/history.service';
     MatButtonModule,
     MatCardModule,
     MatInputModule,
+    MatSlideToggleModule,
     MatToolbarModule,
     MatSelectModule,
     NgxMatSelectSearchModule,
-    NgChartsModule,
     NgChartsModule,
   ],
   providers: [
