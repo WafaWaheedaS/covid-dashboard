@@ -3,7 +3,7 @@ import { concat, Subject, takeUntil } from 'rxjs';
 import { ChartConfiguration, ChartOptions } from "chart.js";
 import { HistoryService } from '../shared/history.service';
 import { CountryService } from '../shared/country.service';
-import { CountryStats, Country, HistoricalCountryStats } from '../shared/country.model';
+import { CountryStats, Country, HistoricalCountryStats, StatValue } from '../shared/model';
 import { dateLabel, dates } from '../app.constants';
 
 @Component({
@@ -16,8 +16,8 @@ export class HistoryComponent implements OnInit {
   
   selectedCountry!: string;
   countryStats: HistoricalCountryStats[] = [];
-  recoveredCases: any[] = [];
-  totalCases: any[] = [];
+  recoveredCases: StatValue[] = [];
+  totalCases: StatValue[] = [];
   _onDestroy = new Subject<void>();
   public lineChartData!: ChartConfiguration<'line'>['data'];
   public lineChartOptions: ChartOptions<'line'> = {

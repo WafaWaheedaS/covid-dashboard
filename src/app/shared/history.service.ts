@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { HttpOpt } from './http-opt.model';
+import { CountryStats, HistoricalCountryStats, HttpOpt } from './model';
 import { covidApiUrl } from '../app.constants';
 import * as countryCodeLookup from 'country-code-lookup';
 
@@ -28,8 +28,8 @@ export class HistoryService {
 
         return this.http.get<any>(this.historyApiUrl, httpOptions).pipe(
             map(res => {
-                let countryHistoryData: any[] = [];
-                res.response.map((stat: any) => countryHistoryData.push({ ...stat, "name": stat.country, "id": countryCodeLookup.byCountry(stat.country)?.fips }))
+                let countryHistoryData: HistoricalCountryStats[] = [];
+                res.response.map((stat: any) => countryHistoryData.push({ ...stat, name: stat.country, id: countryCodeLookup.byCountry(stat.country)?.fips }))
                 localStorage.setItem(`${res.response.country}HistoryData`, JSON.stringify(countryHistoryData));
                 return countryHistoryData;
             }),

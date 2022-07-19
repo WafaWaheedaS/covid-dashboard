@@ -1,6 +1,24 @@
+export interface HttpOpt {
+    headers?: any;
+    params?: any;
+  }
+
+export interface StatValue {
+    date?: string;
+    value?: number;
+}
+
+
 export interface Country {
     name?: string;
     id?: string;
+}
+
+export interface AffectedCountry {
+    name: string;
+    total: number;
+    recovered: number;
+    active: number;
 }
 
 export interface CountryStats extends Country {
@@ -23,3 +41,8 @@ export interface HistoricalCountryStats {
     date: string;
     stats: CountryStats;
 }
+
+export interface HttpOpt {
+    headers?: any;
+    params?: any;
+  }

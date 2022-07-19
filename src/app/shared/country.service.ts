@@ -3,10 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { HttpOpt } from './http-opt.model';
+import { HttpOpt, Country} from './model';
 import { covidApiUrl, defaultSelectedCountry } from '../app.constants';
 import * as countryCodeLookup from 'country-code-lookup';
-import { Country } from './country.model';
 
 @Injectable()
 export class CountryService {
@@ -29,8 +28,8 @@ export class CountryService {
 
     return this.http.get<any>(this.countryApiUrl, httpOptions).pipe(
       map(res => {
-        let countries: any[] = [];
-        res.response.map(  (country: any) => countries.push({"name": country, "id": countryCodeLookup.byCountry(country)?.fips }))
+        let countries: Country[] = [];
+        res.response.map(  (country: string) => countries.push({"name": country, "id": countryCodeLookup.byCountry(country)?.fips }))
         localStorage.setItem('countries', JSON.stringify(countries));
         return countries;
       }),

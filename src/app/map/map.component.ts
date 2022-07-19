@@ -4,7 +4,7 @@ import * as am5map from '@amcharts/amcharts5/map';
 import am5geodata_worldLow from '@amcharts/amcharts5-geodata/worldLow';
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { StatsService } from '../shared/stats.service';
-import { Country, CountryStats } from '../shared/country.model';
+import { Country, CountryStats } from '../shared/model';
 import { Subject, takeUntil } from 'rxjs';
 import { CountryService } from '../shared/country.service';
 

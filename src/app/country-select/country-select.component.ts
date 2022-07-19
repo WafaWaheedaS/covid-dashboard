@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CountryService } from '../shared/country.service';
-import { Country } from '../shared/country.model';
+import { Country } from '../shared/model';
 import * as countryCodeLookup from 'country-code-lookup';
 import { defaultSelectedCountry } from '../app.constants';
 import { UntypedFormControl } from '@angular/forms';
@@ -58,7 +58,7 @@ export class CountrySelectComponent implements OnInit {
     this.filteredCountries
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
-        this.countrySelect.compareWith = (a: any, b: any) => a && b && a === b;
+        this.countrySelect.compareWith = (a, b) => a && b && a === b;
       });
   }
 

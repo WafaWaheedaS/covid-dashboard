@@ -1,4 +1,4 @@
-import { Country } from "./shared/country.model"
+import { Country } from "./shared/model"
 
 export const rapidApiHost: string = "covid-193.p.rapidapi.com"
 export const covidApiUrl: string = "https://covid-193.p.rapidapi.com"

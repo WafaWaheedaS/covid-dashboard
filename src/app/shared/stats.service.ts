@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { HttpOpt } from './http-opt.model';
+import { CountryStats, HttpOpt } from './model';
 import { covidApiUrl } from '../app.constants';
 import * as countryCodeLookup from 'country-code-lookup';
 
@@ -24,7 +24,7 @@ export class StatsService {
 
     return this.http.get<any>(this.statsApiUrl, httpOptions).pipe(
       map(res => {
-        let countriesStats: any[] = [];
+        let countriesStats: CountryStats[] = [];
         res.response.map(  (stat: any) => countriesStats.push({...stat, "name": stat.country, "id": countryCodeLookup.byCountry(stat.country)?.fips}))
         localStorage.setItem('countriesStats', JSON.stringify(countriesStats));
         return countriesStats;

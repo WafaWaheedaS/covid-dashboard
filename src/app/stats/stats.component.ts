@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ChartConfiguration } from "chart.js";
-import { CountryStats } from '../shared/country.model';
+import { AffectedCountry, CountryStats } from '../shared/model';
 import { StatsService } from '../shared/stats.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class StatsComponent implements OnInit {
 
   selectedCountry!: string;
   countriesStats!: CountryStats[];
-  affectedCountries!: any[];
+  affectedCountries!: AffectedCountry[];
   _onDestroy = new Subject<void>();
 
   public barChartLegend = true;
