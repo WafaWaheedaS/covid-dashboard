@@ -3,3 +3,8 @@
     height: 400px;
     margin-top: 10px;
   }
+
+.covid-info-tooltip {
+  color: rgb(130, 130, 130);
+  font-size: small;
+}

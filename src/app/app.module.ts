@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -50,6 +52,8 @@ import { HistoryService } from './shared/history.service';
     MatSlideToggleModule,
     MatToolbarModule,
     MatSelectModule,
+    MatIconModule,
+    MatTooltipModule,
     NgxMatSelectSearchModule,
     NgChartsModule,
   ],
