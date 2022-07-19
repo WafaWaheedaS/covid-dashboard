@@ -78,11 +78,6 @@ export class CountrySelectComponent implements OnInit {
     );
   }
 
-  onSearchSelect(country: string) {
-    console.log(country)
-    this.countryCtrl.setValue(country)
-  }
-
   onCountrySelect() {
     let selectedCountry = this.countryCtrl.value;
     let country: Country = { 'name': selectedCountry, 'id': countryCodeLookup.byCountry(selectedCountry)?.fips }

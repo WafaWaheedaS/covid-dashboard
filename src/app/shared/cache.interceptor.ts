@@ -44,7 +44,7 @@ export class CacheInterceptor implements HttpInterceptor {
             return next.handle(req).pipe(
                 tap((event) => {
                     if (event instanceof HttpResponse) {
-                        console.log("Add api call to cache...", req.urlWithParams);
+                        console.log("adding api call to cache...", req.urlWithParams);
                         this.cacheService.add(req.urlWithParams, event);
                     }
                 })

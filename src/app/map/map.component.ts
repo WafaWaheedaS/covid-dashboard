@@ -31,8 +31,7 @@ export class MapComponent implements OnInit {
     .pipe(takeUntil(this._onDestroy))
     .subscribe((country: Country) => { if (country?.name) {
         this.selectedCountry = country.name;
-        if(this.mapPolygon) { 
-          console.log(this.selectedCountry)
+        if(this.mapPolygon) {
           this.getStats()
           this.populateMapData(this.mapPolygon)
         }
@@ -124,7 +123,7 @@ export class MapComponent implements OnInit {
     this.statsService.getAll({'country': this.selectedCountry})
     .pipe(takeUntil(this._onDestroy)).subscribe((countriesStatsRes: CountryStats[]) => {
       this.countriesStats = countriesStatsRes;
-    }, (error) => console.log("Failed to get stats.", error), () => {
+    }, (error) => console.log("failed to get stats.", error), () => {
        if(!this.map) this.mapPolygon = this.initialize(); })
   }
 
